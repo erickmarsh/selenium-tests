@@ -4,4 +4,15 @@
       <directory>../GoogleAnalytics</directory>
     </testsuite>
   </testsuites>
+  <selenium>
+	<browser name="Firefox on Win8 - SauceLabs"
+	           browser="firefox"
+	           host="http://azakowski:52368b71-d5b9-4df3-8ef1-5fbb27c6f780@ondemand.saucelabs.com:80/wd/hub"
+	           timeout="30000"/>
+	<browser name="Chrome - Local"
+	           browser="chrome"
+	           host="http://localhost:4444/wd/hub"
+	           timeout="30000"/>
+
+  </selenium>
 </phpunit>
