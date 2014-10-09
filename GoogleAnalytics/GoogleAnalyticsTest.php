@@ -1,39 +1,44 @@
 <?php
 
+//include ("../build/sausce-bootstrap.php");
 
 class GoogleAnalyticsTest extends PHPUnit_Framework_TestCase
 {
 
-    static $D;              // Static Driver
-    protected $webDriver;
+    static $WD;      // WebDriver
 
     public static function setUpBeforeClass()
     {
-        $capabilities = array(\WebDriverCapabilityType::BROWSER_NAME => 'firefox');
-        self::$D = RemoteWebDriver::create('http://localhost:4444/wd/hub', $capabilities);
-        self::$D->manage()->timeouts()->implicitlyWait(30); 
+
+        $capabilities = BrowserConfig::get_capabilities();
+
+        var_dump($capabilities);
+        echo "\n\n". BrowserConfig::get_host() ."\n\n";
+
+        self::$WD = RemoteWebDriver::create(BrowserConfig::get_host(), $capabilities);
+        self::$WD->manage()->timeouts()->implicitlyWait(30); 
     }
 
     public static function tearDownAfterClass()
     {
-        self::$D->close();
+        self::$WD->close();
     }
 
 
     public function testStaticDriver()
     {
-        self::$D->get("http://www.github.com");
+        self::$WD->get("http://www.github.com");
         // checking that page title contains word 'GitHub'
-        $this->assertContains('GitHub', self::$D->getTitle());
+        $this->assertContains('GitHub', self::$WD->getTitle());
     }
 
 
     public function testPageTitle()
     {
 
-        self::$D->get("http://www.github.com");
+        self::$WD->get("http://www.github.com");
         // checking that page title contains word 'GitHub'
-        $this->assertContains('GitHub', self::$D->getTitle());
+        $this->assertContains('GitHub', self::$WD->getTitle());
     }
 
 
@@ -41,8 +46,8 @@ class GoogleAnalyticsTest extends PHPUnit_Framework_TestCase
     {
         $ga_code = 'UA-2853604-2';
 
-        self::$D->get("http://www.rockler.com");
-        $source = self::$D->getPageSource();
+        self::$WD->get("http://www.rockler.com");
+        $source = self::$WD->getPageSource();
 
         // Checks if the GA code is actually in the HTML source
         $this->assertTrue( stripos($source, $ga_code) !== FALSE );
