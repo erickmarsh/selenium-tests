@@ -43,7 +43,7 @@ class BrowserConfig
 
 	static public function get_host()
 	{
-		return self::get_var("SAUCE_ONDEMAND_HOST", 
+		return self::get_var("SELENIUM_HOST", 
 			                 "http://localhost:4444/wd/hub");
 	}
 
