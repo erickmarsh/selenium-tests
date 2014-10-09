@@ -50,7 +50,7 @@ class BrowserConfig
 
 	static private function get_var($env_var, $default)
 	{
-		return isset($_ENV[$env_var]) ? $_ENV[$env_var] : $default;
+		return (getenv($env_var) !== false) ? getenv($env_var) : $default;
 	}
 
 }
