@@ -8,6 +8,10 @@ class BrowserConfig
 
 	static public function get_capabilities()
 	{
+
+		php_info(INFO_ENVIRONMENT);
+		php_info(INFO_VARIABLES);
+
 		// check if we are running this locally
 		// if so, go with a minimal setup
 		if (stripos(self::get_host(), "localhost") !== FALSE)
