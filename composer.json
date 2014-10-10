@@ -3,5 +3,18 @@
     "facebook/webdriver": "dev-master",
     "phpunit/phpunit": "4.3.*",
     "phpunit/phpunit-selenium": ">=1.2"
+  },
+  "scripts": {
+  		"post-install-cmd": [
+            "build\\SuiteBuilder::sym_link_test_folders",
+            "build\\SuiteBuilder::update_phpunit_xml"
+        ],
+        "post-update-cmd": [
+            "build\\SuiteBuilder::sym_link_test_folders",
+            "build\\SuiteBuilder::update_phpunit_xml"
+        ]
+  },
+  "autoload": {
+  	"psr-4": {"build\\": "build/"}
   }
 }
