@@ -12,9 +12,6 @@ class GoogleAnalyticsTest extends PHPUnit_Framework_TestCase
 
         $capabilities = BrowserConfig::get_capabilities();
 
-        var_dump($capabilities);
-        echo "\n\n". BrowserConfig::get_host() ."\n\n";
-
         self::$WD = RemoteWebDriver::create(BrowserConfig::get_host(), $capabilities);
         self::$WD->manage()->timeouts()->implicitlyWait(30); 
     }
